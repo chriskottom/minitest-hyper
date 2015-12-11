@@ -1,9 +1,52 @@
+# Editor temporary files
+#
+*~
+\#*\#
+.\#*
+*.swp
+*.swo
+
+
+# Other common temporary files
+#
+*.bak
+*.old
+*.orig
+*.rbc
+/tmp/*
+
+
+# Bundler artifacts
+#
 /.bundle/
-/.yardoc
 /Gemfile.lock
-/_yardoc/
+/vendor/bundle/
+
+
+# RubyGems-related artifacts
+#
+/*.gem
+
+
+# Testing artifacts and temp files
+#
 /coverage/
+/test/reports/
+/test/tmp/
+**/test/version_tmp
+
+
+# Documentation
+#
+/.yardoc
+/_yardoc/
 /doc/
-/pkg/
-/spec/reports/
-/tmp/
+/rdoc/
+
+
+# Keep files
+#
+!**/.gitkeep
+!**/.keep
+
+
