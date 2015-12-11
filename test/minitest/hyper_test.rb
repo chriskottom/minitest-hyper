@@ -1,11 +1,13 @@
 require 'test_helper'
 
-class Minitest::HyperTest < Minitest::Test
-  def test_that_it_has_a_version_number
-    refute_nil ::Minitest::Hyper::VERSION
+describe Minitest::Hyper do
+  it "has a version" do
+    expect(Minitest::Hyper::VERSION).wont_be_nil
   end
 
-  def test_it_does_something_useful
-    assert false
+  it "can be enabled" do
+    Minitest::Hyper.class_variable_set(:@@enabled, false)
+    Minitest::Hyper.enable!
+    assert Minitest::Hyper.enabled?
   end
 end

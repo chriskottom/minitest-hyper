@@ -1,4 +1,6 @@
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'minitest/hyper'
+$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
+require "minitest/hyper_plugin"
 
-require 'minitest/autorun'
+require "minitest/autorun"
+require "minitest/spec"
+require "minitest/pride"

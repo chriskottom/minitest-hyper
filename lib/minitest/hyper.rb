@@ -1,7 +1,4 @@
-require "minitest/hyper/version"
+require "minitest/hyper_plugin"
 
-module Minitest
-  module Hyper
-    # Your code goes here...
-  end
-end
+Minitest.load_plugins
+Minitest::Hyper.enable!
