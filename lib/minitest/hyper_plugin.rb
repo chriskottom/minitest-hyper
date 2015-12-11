@@ -1,11 +1,13 @@
 require "minitest"
 
+require "minitest/hyper/reporter"
+
 module Minitest
   # Mandatory Minitest initializer hook
   # Detected by Minitest.load_plugins, invoked during Minitest.init_plugins
   def self.plugin_hyper_init(options)
     if Hyper.enabled?
-      # Do something...
+      reporter.reporters << Hyper::Reporter.new(options[:io], options)
     end
   end
 
