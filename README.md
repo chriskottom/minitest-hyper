@@ -1,15 +1,15 @@
 # Minitest::Hyper
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/minitest/hyper`. To experiment with that code, run `bin/console` for an interactive prompt.
+Generates attractive, self-contained HTML reports for your Minitest runs.
 
-TODO: Delete this and the text above, and describe your gem
+This gem was created as a demonstration of how to build a Minitest extension for [The Minitest Cookbook](http://chriskottom.com/minitestcookbook/).
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'minitest-hyper'
+gem "minitest-hyper", require: false
 ```
 
 And then execute:
@@ -22,7 +22,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To generate reports using Minitest::Hyper, you'll need to pass the `-H` or `--html` flag to Minitest on the command line in one of the usual ways.
+
+    $ ruby -H test/foo_test.rb
+    $ TEST_OPTS="--html" rake test
+
+You can also switch on report generation globally for every test run by putting the following in your test helper:
+
+```ruby
+require "minitest/hyper"
+```
 
 ## Development
 
@@ -33,7 +42,6 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/minitest-hyper. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
-
 
 ## License
 
