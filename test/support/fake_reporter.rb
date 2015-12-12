@@ -29,6 +29,10 @@ class FakeReporter < OpenStruct
     @all_results = (passes + fails + skips + errors).shuffle
     @results = (fails + skips + errors).shuffle
   end
+
+  def to_h
+    Minitest::Hyper::Reporter::HashFormatter.as_hash(self)
+  end
   
   private
   
