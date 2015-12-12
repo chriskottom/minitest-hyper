@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= page_info[:title] %></title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/flatly/bootstrap.min.css" rel="stylesheet">
+    <style media="screen" type="text/css">
+     <%= page_info[:styles] %>
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">Hyper</a>
+	</div>
+	<div id="navbar" class="navbar-collapse collapse">
+	</div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div id="main">
+      <div class="container">
+	<div id="summary"></div>
+
+	<div id="charts"></div>
+	
+	<div id="test-results">
+	  <h2>Test Results</h2>
+	  <% test_info[:results].each do |result| %>
+	    <div class="result clearfix <%= result[:class] %>">
+	      <span class="outcome"><%= result[:outcome].upcase %>: </span>
+	      <span class="name"><%= result[:name] %></span>
+	      <span class="time"><%= sprintf("%.2f", result[:time] * 1000.0) %> ms</span>
+	      <div class="failure-details">
+		<%= result[:result] %>
+	      </div>
+	    </div>
+	  <% end %>
+	</div>
+      </div>
+    </div>
+  </body>
+</html>

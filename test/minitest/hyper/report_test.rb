@@ -4,7 +4,7 @@ describe Minitest::Hyper::Report do
   include FilesystemHelpers
   include FilesystemHelpers::Expectations
 
-  let(:reporter) { Minitest::Hyper::Reporter.new }
+  let(:reporter) { FakeReporter.new(count: 20) }
   let(:report)   { Minitest::Hyper::Report.new(reporter) }
 
   it "has a url" do

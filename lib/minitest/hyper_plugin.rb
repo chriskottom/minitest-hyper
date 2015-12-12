@@ -22,10 +22,15 @@ module Minitest
   end
 
   module Hyper
+    GEM_DIR       = File.join(File.dirname(__FILE__), "../..")
     WORKING_DIR   = Dir.pwd
 
     REPORTS_DIR   = File.join(WORKING_DIR, "test/reports/hyper")
     REPORT_FILE   = File.join(REPORTS_DIR, "index.html")
+
+    TEMPLATE_DIR  = File.join(GEM_DIR, "lib/templates")
+    CSS_TEMPLATE  = File.join(TEMPLATE_DIR, "hyper.css")
+    HTML_TEMPLATE = File.join(TEMPLATE_DIR, "index.html.erb")
     
     VERSION = "0.1.0"
 

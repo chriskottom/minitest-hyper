@@ -1,0 +1,56 @@
+body { padding-top: 70px; }
+
+#test-results {
+  margin: 0;
+}
+
+.result {
+  border: solid;
+  border-width: 3px thin;
+  font-size: 14px;
+  margin-bottom: 3px;
+  padding: 6px;
+  width: 100%;
+}
+
+.result span.outcome,
+.result span.name,
+.result span.time {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.result span.outcome,
+.result span.name {
+  float: left;
+}
+
+.result span.time {
+  float: right;
+}
+
+.result .failure-details {
+  clear: both;
+}
+
+.result.pass {
+  background-color: #eef;
+  border-color: green;
+  font-color: dark-green;
+}
+
+.result.fail {
+  background-color: #ffe4b2;
+  border-color: orange;
+}
+
+.result.error {
+  background-color: #fdd;
+  border-color: red;
+}
+
+.result.skip {
+  background-color: #f0f0f0;
+  border-color: #aaa;
+}
