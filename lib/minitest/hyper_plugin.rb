@@ -1,6 +1,7 @@
 require "minitest"
 
 require "minitest/hyper/reporter"
+require "minitest/hyper/report"
 
 module Minitest
   # Mandatory Minitest initializer hook
@@ -21,6 +22,11 @@ module Minitest
   end
 
   module Hyper
+    WORKING_DIR   = Dir.pwd
+
+    REPORTS_DIR   = File.join(WORKING_DIR, "test/reports/hyper")
+    REPORT_FILE   = File.join(REPORTS_DIR, "index.html")
+    
     VERSION = "0.1.0"
 
     @@enabled = false
