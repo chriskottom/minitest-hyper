@@ -1,10 +1,47 @@
 body { padding-top: 70px; }
 
+.row {
+  margin-bottom: 20px;
+}
+
+/*
+ *  SUMMARY ROW
+ */
+#summary .widget {
+  border: 3px solid #eef;
+  border-radius: 10px;
+  margin-right: 2.5%;
+  padding: 10px;
+  width: 18%;
+}
+
+#summary .widget:last-child {
+  margin-right: 0;
+}
+
+#summary .counter {
+  display: block;
+  font-size: 4em;
+  font-weight: bold;
+  text-align: center;
+}
+
+#summary .metric {
+  display: block;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+/*
+ *  INDIVIDUAL TEST RESULTS
+ */
 #test-results {
   margin: 0;
 }
 
-.result {
+#test-results .result {
   border: solid;
   border-width: 3px thin;
   font-size: 14px;
@@ -13,44 +50,62 @@ body { padding-top: 70px; }
   width: 100%;
 }
 
-.result span.outcome,
-.result span.name,
-.result span.time {
+#test-results .result span.outcome-name,
+#test-results .result span.time {
   display: inline-block;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
 }
 
-.result span.outcome,
-.result span.name {
-  float: left;
+#test-results .result span.outcome-name {
+  overflow: hidden;
+  max-width: 85%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
-.result span.time {
+#test-results .result span.time {
   float: right;
+  width: 15%;
 }
 
-.result .failure-details {
+#test-results .result .failure-details {
   clear: both;
 }
 
-.result.pass {
+#test-results .result.pass {
   background-color: #eef;
   border-color: green;
   font-color: dark-green;
 }
 
-.result.fail {
+#test-results .result.fail {
   background-color: #ffe4b2;
   border-color: orange;
 }
 
-.result.error {
+#test-results .result.error {
   background-color: #fdd;
   border-color: red;
 }
 
-.result.skip {
+#test-results .result.skip {
   background-color: #f0f0f0;
   border-color: #aaa;
+}
+
+
+/*
+ *  CHARTS
+ */
+#charts h3 {
+  margin: 0;
+  text-align: center;
+}
+
+#charts canvas {
+  display: block;
+  height: 300px;
+  margin: 0 auto;
+  width: 90%;
 }

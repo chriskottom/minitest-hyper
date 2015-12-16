@@ -16,42 +16,86 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-	<div class="navbar-header">
-	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	    <span class="sr-only">Toggle navigation</span>
-	    <span class="icon-bar"></span>
-	    <span class="icon-bar"></span>
-	    <span class="icon-bar"></span>
-	  </button>
-	  <a class="navbar-brand" href="#">Hyper</a>
-	</div>
-	<div id="navbar" class="navbar-collapse collapse">
-	</div><!--/.navbar-collapse -->
-      </div>
-    </nav>
-
     <div id="main">
       <div class="container">
-	<div id="summary"></div>
+	<div id="summary" class="row">
+	  <div id="count" class="widget col-md-2">
+	    <span class="counter"><%= test_info[:count] %></span>
+	    <span class="metric">Tests Run</span>
+	  </div>
+	  <div id="assertions" class="widget col-md-2">
+	    <span class="counter"><%= test_info[:assertions] %></span>
+	    <span class="metric">Assertions</span>
+	  </div>
+	  <div id="failures" class="widget col-md-2">
+	    <span class="counter"><%= test_info[:failures] %></span>
+	    <span class="metric">Failed</span>
+	  </div>
+	  <div id="errors" class="widget col-md-2">
+	    <span class="counter"><%= test_info[:errors] %></span>
+	    <span class="metric">Errors</span>
+	  </div>
+	  <div id="skips" class="widget col-md-2">
+	    <span class="counter"><%= test_info[:skips] %></span>
+	    <span class="metric">Skipped</span>
+	  </div>
+	</div>
 
-	<div id="charts"></div>
-	
-	<div id="test-results">
+	<div class="row">
 	  <h2>Test Results</h2>
-	  <% test_info[:results].each do |result| %>
-	    <div class="result clearfix <%= result[:class] %>">
-	      <span class="outcome"><%= result[:outcome].upcase %>: </span>
-	      <span class="name"><%= result[:name] %></span>
-	      <span class="time"><%= sprintf("%.2f", result[:time] * 1000.0) %> ms</span>
-	      <div class="failure-details">
-		<%= result[:result] %>
+
+	  <div id="test-results" class="col-md-8">
+	    <% test_info[:results].each do |result| %>
+	      <div class="result clearfix <%= result[:class] %>">
+		<span class="outcome-name">
+		  <%= result[:outcome].upcase %>: <%= result[:name] %>
+		</span>
+		<span class="time"><%= sprintf("%.2f", result[:time] * 1000.0) %> ms</span>
+		<div class="failure-details">
+		  <%= result[:result] %>
+		</div>
 	      </div>
-	    </div>
-	  <% end %>
+	    <% end %>
+	  </div>
+
+	  <div id="charts" class="col-md-4">
+	    <h3>Results by Type</h3>
+	    <canvas id="results-by-type"></canvas>
+	  </div>
 	</div>
       </div>
     </div>
+    <script>
+     // Results by type pie chart
+     var resultsByTypeData = [
+       {
+	 label: "Failures",
+	 color: "#bd0000",
+	 highlight: "#ed0000",
+	 value: <%= test_info[:failures] %>
+	},
+       {
+	 label: "Errors",
+	 color: "#b34100",
+	 highlight: "#cc4b00",
+	 value: <%= test_info[:errors] %>
+	},
+       {
+	 label: "Skips",
+	 color: "#006e99",
+	 highlight: "#00a8eb",
+	 value: <%= test_info[:skips] %>
+	},
+       {
+	 label: "Passed",
+	 color: "#009e18",
+	 highlight: "#00d620",
+	 value: <%= test_info[:count] - test_info[:skips] - test_info[:errors] - test_info[:failures] %>
+	}
+     ];
+
+     var ctx = document.getElementById("results-by-type").getContext("2d");
+     var resultsByTypeChart = new Chart(ctx).Pie(resultsByTypeData);
+    </script>
   </body>
 </html>
