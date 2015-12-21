@@ -19,10 +19,6 @@ module Minitest
         super
         @report = Report.new(self)
         @report.write
-      end
-
-      def passed?
-        super
         io.puts "Wrote HTML test report to #{ @report.url }"
       end
 
