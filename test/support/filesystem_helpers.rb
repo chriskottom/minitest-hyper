@@ -3,13 +3,11 @@ require "minitest"
 require "minitest/spec"
 
 module FilesystemHelpers
-  def reset_reports_directory
-    reports_dir = Minitest::Hyper::REPORTS_DIR
+  def reset_reports_directory(reports_dir)
     FileUtils.rm_rf(reports_dir) if Dir.exist?(reports_dir)
   end
 
-  def touch_report
-    path = Minitest::Hyper::REPORT_FILE
+  def touch_report(path)
     FileUtils.mkdir_p(File.dirname(path))
     FileUtils.touch(path)
   end

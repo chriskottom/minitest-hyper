@@ -19,21 +19,23 @@ describe Minitest::Hyper::Reporter do
   end
 
   describe "#report" do
+    let(:report_dir)  { Minitest::Hyper.report_dirname }
+    let(:report_file) { Minitest::Hyper.report_filename }
+
     before do
-      reset_reports_directory
+      reset_reports_directory(report_dir)
     end
 
     it "writes the report file" do
-      expect(Minitest::Hyper::REPORT_FILE).wont_be_a_file
+      expect(report_file).wont_be_a_file
       capture_subprocess_io do
         reporter.report
       end
-      expect(Minitest::Hyper::REPORT_FILE).must_be_a_file
+      expect(report_file).must_be_a_file
     end
 
     it "writes the report URL to the console" do
-      report_path =  Minitest::Hyper::REPORT_FILE
-      regexp = %r{Wrote HTML test report to file://#{ report_path }}
+      regexp = %r{Wrote HTML test report to file://#{ report_file }}
       out, err = capture_subprocess_io do
         reporter.report
       end

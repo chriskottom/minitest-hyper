@@ -10,30 +10,38 @@ module Minitest
         @reporter = reporter
       end
 
-      def url
-        "file://#{ REPORT_FILE.gsub(/\\/, "/") }"
-      end
-
       def write
         ensure_output_dir
         move_existing_file
         write_file
       end
 
+      def url
+        "file://#{ filename.gsub(/\\/, "/") }"
+      end
+
+      def dirname
+        Minitest::Hyper.report_dirname
+      end
+
+      def filename
+        Minitest::Hyper.report_filename
+      end
+
       private
 
       def ensure_output_dir
-        unless Dir.exist?(REPORTS_DIR)
-          FileUtils.mkdir_p REPORTS_DIR
+        unless Dir.exist?(dirname)
+          FileUtils.mkdir_p dirname
         end
       end
 
       def move_existing_file
-        if File.exist?(REPORT_FILE)
-          ctime = File.ctime(REPORT_FILE)
+        if File.exist?(filename)
+          ctime = File.ctime(filename)
           time_str = ctime.strftime("%Y%m%d%H%M%S")
-          new_name = REPORT_FILE.sub(/\.html$/, "_#{ time_str }.html")
-          FileUtils.mv(REPORT_FILE, new_name)
+          new_name = filename.sub(/\.html$/, "_#{ time_str }.html")
+          FileUtils.mv(filename, new_name)
         end
       end
 
@@ -46,7 +54,7 @@ module Minitest
         test_info = reporter.to_h
 
         erb = ERB.new(template_string)
-        File.open(REPORT_FILE, "wb") do |file|
+        File.open(filename, "wb") do |file|
           file.write erb.result(binding)
         end
       end
