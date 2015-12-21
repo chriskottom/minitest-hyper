@@ -28,7 +28,7 @@ module Minitest
     CSS_TEMPLATE  = File.join(TEMPLATE_DIR, "hyper.css")
     HTML_TEMPLATE = File.join(TEMPLATE_DIR, "index.html.erb")
 
-    VERSION = "0.1.0"
+    VERSION = "0.2.0"
 
     @@enabled = false
 
