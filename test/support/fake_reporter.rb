@@ -1,7 +1,10 @@
 require "ostruct"
 
 class FakeReporter < OpenStruct
-  DEFAULT_OPTIONS = Hash.new(0)
+  DEFAULT_OPTIONS = {
+    count: 0, assertions: 0, start_time: Time.now, total_time: 0.0,
+    failures: 0, errors: 0, skips: 0, results: [], non_passing: []
+  }
 
   CODES = %i(pass skip fail error)
   
