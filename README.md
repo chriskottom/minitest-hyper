@@ -4,6 +4,8 @@ Generates attractive, self-contained HTML reports for your Minitest runs.
 
 This gem was created as a demonstration of how to build a Minitest extension for [The Minitest Cookbook](http://chriskottom.com/minitestcookbook/).
 
+![Sample Report](./assets/sample_report.png)
+
 ## Installation
 
 Add this line to your application's Gemfile:
