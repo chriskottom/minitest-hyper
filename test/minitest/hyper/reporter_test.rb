@@ -25,21 +25,17 @@ describe Minitest::Hyper::Reporter do
 
     it "writes the report file" do
       expect(Minitest::Hyper::REPORT_FILE).wont_be_a_file
-      reporter.report
+      capture_subprocess_io do
+        reporter.report
+      end
       expect(Minitest::Hyper::REPORT_FILE).must_be_a_file
-    end
-  end
-
-  describe "#passed?" do
-    before do
-      reporter.report
     end
 
     it "writes the report URL to the console" do
       report_path =  Minitest::Hyper::REPORT_FILE
       regexp = %r{Wrote HTML test report to file://#{ report_path }}
       out, err = capture_subprocess_io do
-        reporter.passed?
+        reporter.report
       end
       expect(out).must_match regexp
     end
